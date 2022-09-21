@@ -1,0 +1,38 @@
+<div
+class="flex text-lg align-items-center justify-content-center h-4rem bg-cyan-600 font-bold text-white border-round m-2 hover:bg-cyan-700"
+>
+<p-avatar image={{avatar}} styleClass="mr-2" size="large" shape="circle"></p-avatar>
+{{ waiter.name }}
+<button
+  pButton
+  (click)="onDelete(waiter)"
+  type="button"
+  label="Delete"
+  class="ml-2 p-button-danger p-button-sm"
+></button>
+<button
+  pButton
+  (click)="showDialog(waiter)"
+  type="button"
+  label="Edit"
+  class="ml-2 p-button-primer p-button-sm"
+></button>
+</div>
+
+<p-dialog header="Edit Waiter" [(visible)]="display" [style]="{width: '30vw'}">
+  <form class="ml-2" novalidate [formGroup]="editForm" (ngSubmit)="onEdit(waiter)">
+    <div>
+      Name
+      <br />
+      <input type="text" required formControlName="name" placeholder="name"/>
+    </div>
+  
+    <p-button
+      class="mt-2"
+      type="submit"
+      label="Edit"
+      styleClass="p-button-sm"
+      [disabled]="editForm.invalid"
+    ></p-button>
+  </form>
+</p-dialog>

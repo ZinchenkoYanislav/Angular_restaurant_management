@@ -1,0 +1,9 @@
+<div class="flex justify-content-center flex-wrap bg-cyan-500 text-white">
+  <h1>Tables</h1>
+</div>
+
+<div class="d-flex flex-wrap p-3">
+  <div *ngFor="let table of tables">
+    <app-table-item [table]="table"></app-table-item>
+  </div>
+</div>

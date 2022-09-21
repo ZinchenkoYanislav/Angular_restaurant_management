@@ -1,0 +1,55 @@
+<div class="card text-center">
+  <!-- <p-image src="{{ menu.img }}" alt="Image" width="200vw" height="200vw"></p-image> -->
+  <img src={{menu.img}} class="card-img-top" alt="..." style=" height: 200px">
+  <div class="card-body">
+    <h5 class="card-title">{{ menu.name }}</h5>
+    <p class="card-text">Price {{ menu.price }}$</p>
+    <p-button
+      class="mt-2"
+      type="button"
+      label="Edit"
+      styleClass="p-button-sm"
+      (onClick)="showDialog(menu)"
+    ></p-button>
+    <p-button
+      class="mt-2 ml-2"
+      type="button"
+      label="Delete"
+      styleClass="p-button-danger p-button-sm"
+      (click)="onDelete(menu)"
+    ></p-button>
+  </div>
+</div>
+
+<p-dialog
+  header="Edit {{menu.name}}"
+  [(visible)]="display"
+  [style]="{ width: '35vw' }"
+>
+<form class="ml-2" novalidate [formGroup]="editForm" (ngSubmit)="onEdit(menu)">
+    <div>
+      Name
+      <br />
+      <input type="text" [style]="{ width: '28vw' }" required formControlName="name" placeholder="name" />
+    </div>
+    <div>
+      <label>Price</label> <br />
+      <input type="text" [style]="{ width: '28vw' }" required formControlName="price" />
+    </div>
+    <div class="mt-2 mb-2">
+      <img *ngIf="url" style="width: 75px; height: 75px" [src]="url" />
+    </div>
+    <div>
+      <label>Img URL</label> <br />
+      <input (input)="showImg()" [style]="{ width: '28vw' }" formControlName="img" type="text" />
+    </div>
+  
+    <p-button
+      class="mt-2"
+      type="submit"
+      label="Edit"
+      styleClass="p-button-sm"
+      [disabled]="editForm.invalid"
+    ></p-button>
+  </form>
+</p-dialog>

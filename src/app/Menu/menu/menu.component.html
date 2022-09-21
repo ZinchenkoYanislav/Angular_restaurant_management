@@ -1,0 +1,62 @@
+<div class="flex justify-content-center flex-wrap bg-cyan-500 text-white">
+  <h1>Menu</h1>
+</div>
+<p-button
+class="mt-1 ml-2"
+type="button"
+label="Add Menu"
+styleClass="p-button-sm"
+(onClick)="menuFormStatus = !menuFormStatus"
+></p-button>
+<form *ngIf="menuFormStatus" class="ml-2" novalidate [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+  <div>
+    Name
+    <br />
+    <input type="text" required formControlName="name" placeholder="name" />
+  </div>
+  <div>
+    <label>Price</label> <br />
+    <input type="text" required formControlName="price" />
+  </div>
+  <div class="mt-2 mb-2">
+    <img *ngIf="url" style="width: 75px; height: 75px" [src]="url" />
+  </div>
+  <div>
+    <label>Img URL</label> <br />
+    <input (input)="showImg()" formControlName="img" type="text" />
+  </div>
+
+  <p-button
+    class="mt-2"
+    type="submit"
+    label="Register"
+    styleClass="p-button-sm"
+    [disabled]="menuForm.invalid"
+  ></p-button>
+</form>
+
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let menu of menus" class="col-sm-3 mt-2 mb-2">
+      <app-menu-item [menu]="menu" (deleteMenu)="deleteMenu($event)"></app-menu-item>
+    </div>
+  </div>
+
+  <!-- <p-dialog header="Edit Waiter" [(visible)]="display" [style]="{width: '30vw'}">
+  <form class="ml-2" novalidate [formGroup]="editForm" (ngSubmit)="onEdit(waiter)">
+    <div>
+      Name
+      <br />
+      <input type="text" required formControlName="name" placeholder="name"/>
+    </div>
+  
+    <p-button
+      class="mt-2"
+      type="submit"
+      label="Edit"
+      styleClass="p-button-sm"
+      [disabled]="editForm.invalid"
+    ></p-button>
+  </form>
+</p-dialog> -->
+</div>

@@ -1,0 +1,44 @@
+<div class="flex justify-content-center flex-wrap bg-cyan-500 text-white">
+  <h1>Waiter List</h1>
+</div>
+
+<div>
+  <button
+    pButton
+    type="button"
+    label="Add waiter"
+    class="ml-2 mt-2 p-button-primer p-button-sm"
+    (click)="showAddForm = !showAddForm"
+  ></button>
+  <form
+    *ngIf="showAddForm"
+    class="ml-2"
+    novalidate
+    [formGroup]="registrationForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div>
+      Name
+      <br />
+      <input type="text" required formControlName="name" placeholder="name" />
+    </div>
+
+    <p-button
+      class="mt-2"
+      type="submit"
+      label="Register"
+      styleClass="p-button-sm"
+      [disabled]="registrationForm.invalid"
+    ></p-button>
+  </form>
+</div>
+<div
+  class="flex flex-column card-container green-container"
+  *ngFor="let waiter of waiters"
+>
+  <app-waiter-item
+    [waiter]="waiter"
+    (deleteWaiter)="deleteWaiter($event)"
+  ></app-waiter-item>
+</div>
+
