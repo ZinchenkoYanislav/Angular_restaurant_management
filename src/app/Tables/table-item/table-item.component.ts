@@ -13,11 +13,13 @@ import { TablesService } from 'src/app/api/tablesService';
 })
 export class TableItemComponent implements OnInit {
   @Input() table!: TableClass;
-  menus?: MenuClass[];
+  @Input()menus! : MenuClass[]
+  // menus?: MenuClass[];
   orders: OrderClass[] = [];
   display: boolean = false;
   totalOrders: number = 0;
   tableIsTake: boolean = false
+  valueCount = 0
 
   constructor(
     private menusService: MenusService,
@@ -26,7 +28,7 @@ export class TableItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableStatus()
-    this.getAllMenu();
+    // this.getAllMenu();
     this.orders = this.table.order
     // console.log(this.table)
     this.calcSumOrders()
@@ -61,6 +63,7 @@ export class TableItemComponent implements OnInit {
       newOrder = { name: menu.name, price: menu.price, count: 1 };
       this.orders!.push(newOrder);
     }
+    this.orders = this.orders.sort(this.SortArray)
     this.calcSumOrders()
     this.onEdit(this.table, this.orders)
     this.tableStatus()
@@ -74,6 +77,18 @@ export class TableItemComponent implements OnInit {
       }
     });
   }
+
+  changeCount(order: any){
+    this.orders = this.orders?.filter((item) => item.name !== order.name);
+    this.orders!.push(order);
+    this.orders = this.orders.sort(this.SortArray)
+    this.onEdit(this.table, this.orders)
+    this.calcSumOrders()
+  }
+
+  SortArray(x:any, y:any){
+    return x.name.localeCompare(y.name);
+}
 
 
   onEdit(table: TableClass, orders: any) {

@@ -17,7 +17,7 @@
 <p-dialog
   header="Table {{ table.name }}"
   [(visible)]="display"
-  [style]="{ width: '55%', height: '80%' }"
+  [style]="{ width: '75%', height: '80%' }"
 >
   <div class="grid">
     <div class="col-6 section">
@@ -31,13 +31,7 @@
     <div class="col-6 section">
       <h3>Orders</h3>
       <div *ngFor="let order of orders">
-        <div class="row">
-          <div class="col-5">
-            {{ order.name }}
-          </div>
-          <div class="col-4">x</div>
-          <div class="col-3">{{ order.count }}</div>
-        </div>
+        <app-order [order]="order" (changeCount)="changeCount($event)"></app-order>
       </div>
     </div>
   </div>

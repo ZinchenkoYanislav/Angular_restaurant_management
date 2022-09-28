@@ -27,6 +27,8 @@ import { TablesComponent } from './Tables/tables/tables.component';
 import { TableItemComponent } from './Tables/table-item/table-item.component';
 // import {DataViewModule} from 'primeng/dataview';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {InputNumberModule} from 'primeng/inputnumber';
+import { OrderComponent } from './Tables/order/order.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
     WaiterItemComponent,
     MenuItemComponent,
     TablesComponent,
-    TableItemComponent
+    TableItemComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
     DialogModule, 
     BrowserAnimationsModule,
     ImageModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent]
